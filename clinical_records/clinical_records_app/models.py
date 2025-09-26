@@ -1,6 +1,6 @@
 from mongoengine import (
     Document, StringField, IntField, ReferenceField,
-    CASCADE, ValidationError
+    CASCADE, ValidationError, ListField
 )
 
 class ClinicalRecord(Document):
@@ -27,13 +27,10 @@ class ClinicalRecord(Document):
 
 
 class Pet(Document):
- # este será el _id de Mongo
-    pet_id = IntField(primary_key=True, required=True)
-    clinical_record = ReferenceField(
-        ClinicalRecord, reverse_delete_rule=CASCADE
+    clinical_records = ListField( 
+        ReferenceField(ClinicalRecord, reverse_delete_rule=CASCADE)
     )
 
     meta = {
         "collection": "pets",
-        "indexes": ["pet_id"]
     }

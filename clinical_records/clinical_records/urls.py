@@ -16,10 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from clinical_records_app.views import search_clinical_record,create_clinical_record
+from clinical_records_app.views import search_clinical_record,create_clinical_record,create_pet
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('clinical_record/',create_clinical_record),
-    path('clinical_record/list',search_clinical_record)
+    path('clinical_record/list',search_clinical_record),
+    path('clinical_record/pet',create_pet)
 ]
